@@ -22,10 +22,10 @@ jobs:
       - run: |
           pwd
           ls -a
-      # - node/install-packages:
-      #     app-dir: ~/project/
-      #     pkg-manager: yarn
-      #     cache-key: "yarn.lock"
+      - node/install-packages:
+          app-dir: ~/project
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
 
   test:  # our next job, called "test"
     # we run "parallel job containers" to enable speeding up our tests;
@@ -77,6 +77,6 @@ workflows:
   build_and_test:     # The name of our workflow is "build_and_test"
     jobs:             # The list of jobs we run as part of this workflow.
       - build         # Run build first.
-      # - test:         # Then run test,
-      #     requires:   # Test requires that build passes for it to run.
-      #       - build   # Finally, run the build job.
+      - test:         # Then run test,
+          requires:   # Test requires that build passes for it to run.
+            - build   # Finally, run the build job.
