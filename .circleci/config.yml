@@ -3,8 +3,7 @@ version: 2.1 # Use 2.1 to enable using orbs and other features.
 # Declare the orbs that we'll use in our config.
 # read more about orbs: https://circleci.com/docs/2.0/orb-intro/
 orbs:
-  # ruby: circleci/ruby@1.0
-  node: circleci/node@2
+  ruby: circleci/ruby@1.0
 
 jobs:
   build: # our first job, named "build"
@@ -22,10 +21,6 @@ jobs:
       - run: |
           pwd
           ls -a
-      - node/install-packages:
-          app-dir: ~/project
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
 
   test:  # our next job, called "test"
     # we run "parallel job containers" to enable speeding up our tests;
@@ -57,9 +52,6 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
       # Here we make sure that the secondary container boots
       # up before we run operations on the database.
       - run:
@@ -77,6 +69,6 @@ workflows:
   build_and_test:     # The name of our workflow is "build_and_test"
     jobs:             # The list of jobs we run as part of this workflow.
       - build         # Run build first.
-      # - test:         # Then run test,
-      #     requires:   # Test requires that build passes for it to run.
-      #       - build   # Finally, run the build job.
+      - test:         # Then run test,
+          requires:   # Test requires that build passes for it to run.
+            - build   # Finally, run the build job.
