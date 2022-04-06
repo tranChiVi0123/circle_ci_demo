@@ -19,7 +19,10 @@ jobs:
       # use the node orb to install our packages
       # specifying that we use `yarn` and to cache dependencies with `yarn.lock`
       # learn more: https://circleci.com/docs/2.0/caching/
+      - run: |
+          pwd
       - node/install-packages:
+          app-dir: ~
           pkg-manager: yarn
           cache-key: "yarn.lock"
 
@@ -73,6 +76,6 @@ workflows:
   build_and_test:     # The name of our workflow is "build_and_test"
     jobs:             # The list of jobs we run as part of this workflow.
       - build         # Run build first.
-      - test:         # Then run test,
-          requires:   # Test requires that build passes for it to run.
-            - build   # Finally, run the build job.
+      # - test:         # Then run test,
+      #     requires:   # Test requires that build passes for it to run.
+      #       - build   # Finally, run the build job.
