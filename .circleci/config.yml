@@ -82,7 +82,6 @@ jobs:
             RAILS_ENV=test bin/rails db:migrate
 workflows:
   version: 2
-
   build_and_test:
     jobs:
-      - build_and_run_test:
+      - build_and_run_test
