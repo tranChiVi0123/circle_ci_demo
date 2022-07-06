@@ -15,13 +15,13 @@ updates:
     inogre:
       - dependency-name: google-cloud-bigquery
         versions:
-        - 1.30.0
+          - 1.30.0
       - dependency-name: carrierwave
         versions:
-        - 2.2.0
+          - 2.2.0
       - dependency-name: bootstrap
         versions:
-        - "> 4.3.1"
-        - "< 5"
+          - "> 4.3.1"
+          - "< 5"
     target-branch: master
     rebase-strategy: auto

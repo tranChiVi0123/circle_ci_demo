@@ -14,6 +14,16 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
+require 'simplecov'
+SimpleCov.start 'rails' do
+  enable_coverage :branch
+  add_filter '/bin/'
+  add_filter '/db/'
+  add_filter '/spec/' # for rspec
+end
+SimpleCov.minimum_coverage_by_file line: 90, branch: 80
+SimpleCov.maximum_coverage_drop 5
+
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

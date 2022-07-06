@@ -81,6 +81,18 @@ jobs:
             source ~/.bashrc
             RAILS_ENV=test bin/rails db:create
             RAILS_ENV=test bin/rails db:migrate
+      - run:
+          name: Run Test
+          command: |
+            source ~/.bashrc
+            COVERAGE=1 RAILS_ENV=test bundle exec rspec --format progress --format RspecJunitFormatter --out coverage/rspec.xml
+      - store_test_result:
+          path: coverage
+
+      - store_artifacts: # upload test coverage as artifact
+          path: coverage/rspec.xml
+          prefix: tests
+
 workflows:
   version: 2
   build_and_test:

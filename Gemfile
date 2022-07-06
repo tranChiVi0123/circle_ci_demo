@@ -29,6 +29,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop', '~> 1.16.1', require: false
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
 end
 
@@ -46,9 +47,11 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
+  gem 'rspec_junit_formatter'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'simplecov', require: false, group: :test
   gem 'webdrivers'
 end
 
