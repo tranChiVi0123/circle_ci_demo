@@ -12,7 +12,7 @@ updates:
       time: "05:00"
       timezone: "Asia/Tokyo"
     open-pull-requests-limit: 10
-    inogre:
+    ignore:
       - dependency-name: google-cloud-bigquery
         versions:
           - 1.30.0

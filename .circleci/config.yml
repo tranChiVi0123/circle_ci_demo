@@ -86,7 +86,7 @@ jobs:
           command: |
             source ~/.bashrc
             COVERAGE=1 RAILS_ENV=test bundle exec rspec --format progress --format RspecJunitFormatter --out coverage/rspec.xml
-      - store_test_result:
+      - store_test_results:
           path: coverage
 
       - store_artifacts: # upload test coverage as artifact
