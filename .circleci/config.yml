@@ -71,6 +71,7 @@ jobs:
       - run:
           name: Install mysql client
           command: |
+            wget -q -O https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
             apt update
             apt install --no-install-recommends --yes default-mysql-client
 
