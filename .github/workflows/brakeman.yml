@@ -1,0 +1,31 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# This workflow integrates Brakeman with GitHub's Code Scanning feature
+# Brakeman is a static analysis security vulnerability scanner for Ruby on Rails applications
+
+name: Brakeman Scan
+on:
+  pull_request:
+    branches: [ master, develop ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo chown -R root:root $GITHUB_WORKSPACE
+      - name: Brakeman code scanning
+        uses: standardnotes/brakeman-action@v1.0.0
+      - name: Set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.3
+      - name: Review Dog
+        uses: reviewdog/action-brakeman@v2
+        with:
+          brakeman_version: gemfile
+          github_token: ${{ secrets.github_token }}
+          fail_on_error: true
+          reporter: github-pr-review
