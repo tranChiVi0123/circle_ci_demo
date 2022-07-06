@@ -1,0 +1,24 @@
+inherit_from:
+  - .rubocop_enabled.yml
+  - .rubocop_disabled.yml
+  - .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.7.3
+  NewCops: enable
+  Include:
+    - "**/*.rb"
+    - "**/*.rake"
+    - Gemfile
+  Exclude:
+    - "vendor/**/*"
+    - "config/unicorn.rb"
+    - "bin/*"
+    - "db/**/*"
+    - "spec/*"
+    - "config/**/*"
+    - "node_modules/**/*"
+    - "lib/tasks/*"
