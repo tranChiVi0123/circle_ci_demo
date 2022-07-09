@@ -1,4 +1,4 @@
-class HelloController < ApplicationController
+class HelloController < BaseController
   def index
     @message = 'Hello Wolrd!'
   end
